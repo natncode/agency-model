@@ -1,4 +1,6 @@
 {
+    "name": "natncode/agency-model",
+    "description": "agency model",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
