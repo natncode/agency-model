@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DC\ControlPanel\Event;
+namespace DC\Model\Event;
 
 use DC\Model\Entity\Tour;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;

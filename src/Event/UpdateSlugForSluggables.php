@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DC\ControlPanel\Event;
+namespace DC\Model\Event;
 
 use DC\ControlPanel\Common\Slugger;
 use DC\Model\Entity\Sluggable;
