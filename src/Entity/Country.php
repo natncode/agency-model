@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=CountryRepository::class)
  */
-class Country implements \Stringable
+class Country implements \Stringable, Sluggable
 {
     /**
      * @ORM\Id
