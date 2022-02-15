@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace DC\ControlPanel\Entity;
+namespace DC\Model\Entity;
 
 interface Sluggable
 {
