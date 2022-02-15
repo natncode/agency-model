@@ -6,11 +6,12 @@ namespace DC\Model\Entity;
 
 use DC\Model\Repository\TourFareRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Stringable;
 
 /**
  * @ORM\Entity(repositoryClass=TourFareRepository::class)
  */
-class TourFare
+class TourFare implements Stringable
 {
     /**
      * @ORM\Id
@@ -44,6 +45,11 @@ class TourFare
      * @ORM\JoinColumn(nullable=false)
      */
     private $tour;
+
+    public function __toString(): string
+    {
+        return (string) $this->getLodging();
+    }
 
     public function getId(): ?int
     {
