@@ -174,6 +174,18 @@ class Tour implements \Stringable, Sluggable
      */
     private $highlights;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="toursByThematic")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $thematic;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $duration;
+
     public function __toString(): string
     {
         return (string) ($this->getSecundaryName() ?? $this->getName());
@@ -672,6 +684,30 @@ class Tour implements \Stringable, Sluggable
                 $highlight->setTour(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getThematic(): ?Category
+    {
+        return $this->thematic;
+    }
+
+    public function setThematic(?Category $thematic): self
+    {
+        $this->thematic = $thematic;
+
+        return $this;
+    }
+
+    public function getDuration(): ?Category
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?Category $duration): self
+    {
+        $this->duration = $duration;
 
         return $this;
     }

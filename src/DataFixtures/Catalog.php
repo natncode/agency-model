@@ -119,6 +119,15 @@ class Catalog extends Fixture
         $sumandoVoluntades->setActive(true);
         $manager->persist($sumandoVoluntades);
 
+        $cuatroDias = new Category();
+        $cuatroDias->setName('4 Días');
+        $cuatroDias->setSlug('4-dias');
+        $cuatroDias->setIcon(self::ICON);
+        $cuatroDias->setImage($defaultImage);
+        $cuatroDias->setColor(self::COLOR);
+        $cuatroDias->setActive(true);
+        $manager->persist($cuatroDias);
+
         $manager->flush();
 
         $country = new Country();
@@ -293,7 +302,8 @@ class Catalog extends Fixture
         $tourDate->addFare($tourFare4);
 
         $tour->addRegion($zacatecas);
-        $tour->addCategory($sumandoVoluntades);
+        $tour->setThematic($sumandoVoluntades);
+        $tour->setDuration($cuatroDias);
         $tour->addIncludedDetail($anfitrionDeViaje);
         $tour->addNonIncludedDetail($accesosYActividades);
         $tour->addImage($tourImage);

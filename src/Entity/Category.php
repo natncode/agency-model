@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace DC\Model\Entity;
 
 use DC\Model\Repository\CategoryRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -48,6 +50,16 @@ class Category implements \Stringable, Sluggable
      * @ORM\Column(type="boolean")
      */
     private bool $active = true;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Tour::class, mappedBy="thematic")
+     */
+    private $toursByThematic;
+
+    public function __construct()
+    {
+        $this->toursByThematic = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -129,5 +141,35 @@ class Category implements \Stringable, Sluggable
     public function __toString(): string
     {
         return (string) $this->getName();
+    }
+
+    /**
+     * @return Collection|Tour[]
+     */
+    public function getToursByThematic(): Collection
+    {
+        return $this->toursByThematic;
+    }
+
+    public function addToursByThematic(Tour $toursByThematic): self
+    {
+        if (!$this->toursByThematic->contains($toursByThematic)) {
+            $this->toursByThematic[] = $toursByThematic;
+            $toursByThematic->setThematic($this);
+        }
+
+        return $this;
+    }
+
+    public function removeToursByThematic(Tour $toursByThematic): self
+    {
+        if ($this->toursByThematic->removeElement($toursByThematic)) {
+            // set the owning side to null (unless already changed)
+            if ($toursByThematic->getThematic() === $this) {
+                $toursByThematic->setThematic(null);
+            }
+        }
+
+        return $this;
     }
 }

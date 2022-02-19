@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220219195205 extends AbstractMigration
+final class Version20220219220634 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -25,10 +25,12 @@ final class Version20220219195205 extends AbstractMigration
         $this->addSql('CREATE TABLE country (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(255) NOT NULL, slug VARCHAR(255) NOT NULL)');
         $this->addSql('CREATE TABLE region (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, country_id INTEGER NOT NULL, name VARCHAR(255) NOT NULL)');
         $this->addSql('CREATE INDEX IDX_F62F176F92F3E70 ON region (country_id)');
-        $this->addSql('CREATE TABLE tour (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, uuid BLOB NOT NULL --(DC2Type:uuid)
+        $this->addSql('CREATE TABLE tour (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, thematic_id INTEGER NOT NULL, duration_id INTEGER NOT NULL, uuid BLOB NOT NULL --(DC2Type:uuid)
         , name VARCHAR(255) NOT NULL, secundary_name VARCHAR(255) DEFAULT NULL, slug VARCHAR(255) NOT NULL, description CLOB NOT NULL, map VARCHAR(255) DEFAULT NULL, main_image VARCHAR(255) DEFAULT NULL, usual_days_duration INTEGER DEFAULT NULL, minimum_group_size INTEGER DEFAULT NULL, maximum_group_size INTEGER DEFAULT NULL, suggested_minimum_age INTEGER DEFAULT NULL, suggested_maximum_age INTEGER DEFAULT NULL, minimum_occupied_places_to_go INTEGER DEFAULT NULL, minimum_quota INTEGER DEFAULT NULL, departure_week_day VARCHAR(10) DEFAULT NULL, arrival_week_day VARCHAR(10) DEFAULT NULL, departure_time VARCHAR(10) DEFAULT NULL, departure_place VARCHAR(255) DEFAULT NULL, allow_custom_schedule BOOLEAN NOT NULL, active BOOLEAN NOT NULL, created_at DATETIME NOT NULL --(DC2Type:datetime_immutable)
         , updated_at DATETIME NOT NULL --(DC2Type:datetime_immutable)
         )');
+        $this->addSql('CREATE INDEX IDX_6AD1F9692395FCED ON tour (thematic_id)');
+        $this->addSql('CREATE INDEX IDX_6AD1F96937B987D8 ON tour (duration_id)');
         $this->addSql('CREATE TABLE extended_by (tour_id INTEGER NOT NULL, region_id INTEGER NOT NULL, PRIMARY KEY(tour_id, region_id))');
         $this->addSql('CREATE INDEX IDX_2E56395115ED8D43 ON extended_by (tour_id)');
         $this->addSql('CREATE INDEX IDX_2E56395198260155 ON extended_by (region_id)');
