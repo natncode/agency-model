@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace DC\Model\Entity;
 
 use DC\Model\Repository\TourDateRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -44,6 +46,16 @@ class TourDate
      * @ORM\JoinColumn(nullable=false)
      */
     private $tour;
+
+    /**
+     * @ORM\OneToMany(targetEntity=TourFare::class, mappedBy="tourDate", orphanRemoval=true, cascade={"persist"})
+     */
+    private $fares;
+
+    public function __construct()
+    {
+        $this->fares = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,6 +118,36 @@ class TourDate
     public function setTour(?Tour $tour): self
     {
         $this->tour = $tour;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|TourFare[]
+     */
+    public function getFares(): Collection
+    {
+        return $this->fares;
+    }
+
+    public function addFare(TourFare $fare): self
+    {
+        if (!$this->fares->contains($fare)) {
+            $this->fares[] = $fare;
+            $fare->setTourDate($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFare(TourFare $fare): self
+    {
+        if ($this->fares->removeElement($fare)) {
+            // set the owning side to null (unless already changed)
+            if ($fare->getTourDate() === $this) {
+                $fare->setTourDate(null);
+            }
+        }
 
         return $this;
     }

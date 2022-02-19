@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220212152713 extends AbstractMigration
+final class Version20220219195205 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -47,8 +47,8 @@ final class Version20220212152713 extends AbstractMigration
         $this->addSql('CREATE TABLE tour_date (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tour_id INTEGER NOT NULL, departure_date DATETIME NOT NULL, return_date DATETIME NOT NULL, notes CLOB DEFAULT NULL, active BOOLEAN NOT NULL)');
         $this->addSql('CREATE INDEX IDX_8BAED75A15ED8D43 ON tour_date (tour_id)');
         $this->addSql('CREATE TABLE tour_detail (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name VARCHAR(255) NOT NULL, description CLOB DEFAULT NULL, icon VARCHAR(255) DEFAULT NULL)');
-        $this->addSql('CREATE TABLE tour_fare (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tour_id INTEGER NOT NULL, lodging VARCHAR(255) NOT NULL, price INTEGER NOT NULL, special_price INTEGER DEFAULT NULL, active BOOLEAN NOT NULL)');
-        $this->addSql('CREATE INDEX IDX_77FDB85715ED8D43 ON tour_fare (tour_id)');
+        $this->addSql('CREATE TABLE tour_fare (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tour_date_id INTEGER NOT NULL, lodging VARCHAR(255) NOT NULL, price INTEGER NOT NULL, special_price INTEGER DEFAULT NULL, active BOOLEAN NOT NULL)');
+        $this->addSql('CREATE INDEX IDX_77FDB857F87DB3EA ON tour_fare (tour_date_id)');
         $this->addSql('CREATE TABLE tour_highlight (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tour_id INTEGER NOT NULL, topic_id INTEGER NOT NULL, description CLOB NOT NULL)');
         $this->addSql('CREATE INDEX IDX_76D2467B15ED8D43 ON tour_highlight (tour_id)');
         $this->addSql('CREATE INDEX IDX_76D2467B1F55203D ON tour_highlight (topic_id)');

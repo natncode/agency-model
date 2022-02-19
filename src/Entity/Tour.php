@@ -170,11 +170,6 @@ class Tour implements \Stringable, Sluggable
     private $dates;
 
     /**
-     * @ORM\OneToMany(targetEntity=TourFare::class, mappedBy="tour", orphanRemoval=true, cascade={"persist"})
-     */
-    private $fares;
-
-    /**
      * @ORM\OneToMany(targetEntity=TourHighlight::class, mappedBy="tour", orphanRemoval=true, cascade={"persist"})
      */
     private $highlights;
@@ -193,7 +188,6 @@ class Tour implements \Stringable, Sluggable
         $this->images = new ArrayCollection();
         $this->activities = new ArrayCollection();
         $this->dates = new ArrayCollection();
-        $this->fares = new ArrayCollection();
         $this->highlights = new ArrayCollection();
     }
 
@@ -646,36 +640,6 @@ class Tour implements \Stringable, Sluggable
             // set the owning side to null (unless already changed)
             if ($date->getTour() === $this) {
                 $date->setTour(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|TourFare[]
-     */
-    public function getFares(): Collection
-    {
-        return $this->fares;
-    }
-
-    public function addFare(TourFare $fare): self
-    {
-        if (!$this->fares->contains($fare)) {
-            $this->fares[] = $fare;
-            $fare->setTour($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFare(TourFare $fare): self
-    {
-        if ($this->fares->removeElement($fare)) {
-            // set the owning side to null (unless already changed)
-            if ($fare->getTour() === $this) {
-                $fare->setTour(null);
             }
         }
 

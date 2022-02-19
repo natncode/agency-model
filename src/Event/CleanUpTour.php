@@ -35,11 +35,5 @@ class CleanUpTour implements EventSubscriberInterface
                 $entity->removeHighlight($highlight);
             }
         }
-
-        foreach ($entity->getFares() as $fare) {
-            if (empty($fare->getLodging()) || empty($fare->getPrice())) {
-                $entity->removeFare($fare);
-            }
-        }
     }
 }

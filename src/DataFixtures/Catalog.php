@@ -258,17 +258,39 @@ class Catalog extends Fixture
         $nadoConBallenas = new TourActivity();
         $nadoConBallenas->setDescription('Nadaremos con ballenas');
         
+        $tourFare1 = new TourFare();
+        $tourFare1->setLodging('Hab. Sencilla');
+        $tourFare1->setPrice(1200000);
+        $tourFare1->setSpecialPrice(1100000);
+        $tourFare1->setActive(true);
+
+        $tourFare2 = new TourFare();
+        $tourFare2->setLodging('Hab. Doble');
+        $tourFare2->setPrice(1200000);
+        $tourFare2->setSpecialPrice(1100000);
+        $tourFare2->setActive(true);
+        
+        $tourFare3 = new TourFare();
+        $tourFare3->setLodging('Hab. Triple');
+        $tourFare3->setPrice(1200000);
+        $tourFare3->setSpecialPrice(1100000);
+        $tourFare3->setActive(true);
+
+        $tourFare4 = new TourFare();
+        $tourFare4->setLodging('Hab. Cuádruple');
+        $tourFare4->setPrice(1200000);
+        $tourFare4->setSpecialPrice(1100000);
+        $tourFare4->setActive(true);
+
         $tourDate = new TourDate();
         $tourDate->setDepartureDate(new DateTimeImmutable());
         $tourDate->setReturnDate(new DateTimeImmutable());
         $tourDate->setNotes('Best option');
         $tourDate->setActive(true);
-
-        $tourFare = new TourFare();
-        $tourFare->setLodging('Bus');
-        $tourFare->setPrice(1200000);
-        $tourFare->setSpecialPrice(1100000);
-        $tourFare->setActive(true);
+        $tourDate->addFare($tourFare1);
+        $tourDate->addFare($tourFare2);
+        $tourDate->addFare($tourFare3);
+        $tourDate->addFare($tourFare4);
 
         $tour->addRegion($zacatecas);
         $tour->addCategory($sumandoVoluntades);
@@ -277,7 +299,6 @@ class Catalog extends Fixture
         $tour->addImage($tourImage);
         $tour->addActivity($nadoConBallenas);
         $tour->addDate($tourDate);
-        $tour->addFare($tourFare);
         $manager->persist($tour);
         $manager->flush();
 

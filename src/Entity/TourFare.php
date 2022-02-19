@@ -41,10 +41,10 @@ class TourFare implements Stringable
     private bool $active = true;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Tour::class, inversedBy="fares")
+     * @ORM\ManyToOne(targetEntity=TourDate::class, inversedBy="fares")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $tour;
+    private $tourDate;
 
     public function __toString(): string
     {
@@ -104,14 +104,14 @@ class TourFare implements Stringable
         return $this;
     }
 
-    public function getTour(): ?Tour
+    public function getTourDate(): ?TourDate
     {
-        return $this->tour;
+        return $this->tourDate;
     }
 
-    public function setTour(?Tour $tour): self
+    public function setTourDate(?TourDate $tourDate): self
     {
-        $this->tour = $tour;
+        $this->tourDate = $tourDate;
 
         return $this;
     }
