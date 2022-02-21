@@ -244,6 +244,7 @@ class Catalog extends Fixture
         $tour->setDescription('Es el mejor viaje que podrás adquirir con nosotros, piénsalo: tú, yo, un arból de papaya ;)');
         $tour->setMap('');
         $tour->setMainImage('https://via.placeholder.com/150C/O%20https://placeholder.com/');
+        $tour->setCatalogImage('https://via.placeholder.com/150C/O%20https://placeholder.com/');
         $tour->setUsualDaysDuration(5);
         $tour->setMinimumGroupSize(5);
         $tour->setMaximumGroupSize(5);

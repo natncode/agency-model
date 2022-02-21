@@ -57,6 +57,11 @@ class Tour implements \Stringable, Sluggable
     private $mainImage;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $catalogImage;
+
+    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $usualDaysDuration;
@@ -288,6 +293,18 @@ class Tour implements \Stringable, Sluggable
     public function setMainImage(string $mainImage): self
     {
         $this->mainImage = $mainImage;
+
+        return $this;
+    }
+
+    public function getCatalogImage(): ?string
+    {
+        return $this->catalogImage;
+    }
+
+    public function setCatalogImage(string $catalogImage): self
+    {
+        $this->catalogImage = $catalogImage;
 
         return $this;
     }
