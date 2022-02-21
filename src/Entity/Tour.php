@@ -176,13 +176,13 @@ class Tour implements \Stringable, Sluggable
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="toursByThematic")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="thematic_id", nullable=false)
      */
     private $thematic;
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class)
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(name="duration_id", nullable=false)
      */
     private $duration;
 
