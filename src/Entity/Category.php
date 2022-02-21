@@ -56,9 +56,15 @@ class Category implements \Stringable, Sluggable
      */
     private $toursByThematic;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Tour::class, mappedBy="duration")
+     */
+    private $toursByDuration;
+
     public function __construct()
     {
         $this->toursByThematic = new ArrayCollection();
+        $this->toursByDuration = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -167,6 +173,36 @@ class Category implements \Stringable, Sluggable
             // set the owning side to null (unless already changed)
             if ($toursByThematic->getThematic() === $this) {
                 $toursByThematic->setThematic(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Tour[]
+     */
+    public function getToursByDuration(): Collection
+    {
+        return $this->toursByDuration;
+    }
+
+    public function addToursByDuration(Tour $toursByDuration): self
+    {
+        if (!$this->toursByDuration->contains($toursByDuration)) {
+            $this->toursByDuration[] = $toursByDuration;
+            $toursByDuration->setDuration($this);
+        }
+
+        return $this;
+    }
+
+    public function removeToursByDuration(Tour $toursByDuration): self
+    {
+        if ($this->toursByDuration->removeElement($toursByDuration)) {
+            // set the owning side to null (unless already changed)
+            if ($toursByDuration->getDuration() === $this) {
+                $toursByDuration->setDuration(null);
             }
         }
 
