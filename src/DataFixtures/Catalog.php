@@ -40,77 +40,26 @@ class Catalog extends Fixture
         }
         $manager->flush();
 
-        $categories = [
-            [
-                'name' => 'Parejas',
-                'slug' => 'parejas',
-                'icon' => self::ICON,
-                'image' => $defaultImage,
-                'color' => self::COLOR,
-                'active' => true,
-            ],
-            [
-                'name' => '4 días',
-                'slug' => '4-dias',
-                'icon' => self::ICON,
-                'image' => $defaultImage,
-                'color' => self::COLOR,
-                'active' => true,
-            ],
-            [
-                'name' => 'Excursión',
-                'slug' => 'excursion',
-                'icon' => self::ICON,
-                'image' => $defaultImage,
-                'color' => self::COLOR,
-                'active' => true,
-            ],
-            [
-                'name' => 'Fusión de sabores',
-                'slug' => 'fusión-de-sabores',
-                'icon' => self::ICON,
-                'image' => $defaultImage,
-                'color' => self::COLOR,
-                'active' => true,
-            ],
-            [
-                'name' => 'Festivales',
-                'slug' => 'festivales',
-                'icon' => self::ICON,
-                'image' => $defaultImage,
-                'color' => self::COLOR,
-                'active' => true,
-            ],
-            [
-                'name' => 'Más de 10 días',
-                'slug' => 'mas-de-10-dias',
-                'icon' => self::ICON,
-                'image' => $defaultImage,
-                'color' => self::COLOR,
-                'active' => true,
-            ],
-            [
-                'name' => 'Media baja',
-                'slug' => 'media-baja',
-                'icon' => self::ICON,
-                'image' => $defaultImage,
-                'color' => self::COLOR,
-                'active' => true,
-            ],
-        ];
-        foreach ($categories as $category) {
-            $newCategory = new Category();
-            $newCategory->setName($category['name']);
-            $newCategory->setSlug($category['slug']);
-            $newCategory->setIcon($category['icon']);
-            $newCategory->setImage($category['image']);
-            $newCategory->setColor($category['color']);
-            $newCategory->setActive($category['active']);
+        $tematica = new Category();
+        $tematica->setName('Temática');
+        $tematica->setSlug('tematica');
+        $tematica->setIcon(self::ICON);
+        $tematica->setImage($defaultImage);
+        $tematica->setColor(self::COLOR);
+        $tematica->setActive(true);
+        $manager->persist($tematica);
 
-            $manager->persist($newCategory);
-        }
+        $duracion = new Category();
+        $duracion->setName('Duración');
+        $duracion->setSlug('duracion');
+        $duracion->setIcon(self::ICON);
+        $duracion->setImage($defaultImage);
+        $duracion->setColor(self::COLOR);
+        $duracion->setActive(true);
+        $manager->persist($duracion);
 
         $sumandoVoluntades = new Category();
+        $sumandoVoluntades->setParent($tematica);
         $sumandoVoluntades->setName('Sumando voluntades');
         $sumandoVoluntades->setSlug('sumando-voluntades');
         $sumandoVoluntades->setIcon(self::ICON);
@@ -120,6 +69,7 @@ class Catalog extends Fixture
         $manager->persist($sumandoVoluntades);
 
         $cuatroDias = new Category();
+        $cuatroDias->setParent($duracion);
         $cuatroDias->setName('4 Días');
         $cuatroDias->setSlug('4-dias');
         $cuatroDias->setIcon(self::ICON);

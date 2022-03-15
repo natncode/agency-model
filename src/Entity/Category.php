@@ -61,6 +61,11 @@ class Category implements \Stringable, Sluggable
      */
     private $toursByDuration;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     */
+    private $parent;
+
     public function __construct()
     {
         $this->toursByThematic = new ArrayCollection();
@@ -205,6 +210,18 @@ class Category implements \Stringable, Sluggable
                 $toursByDuration->setDuration(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getParent(): ?self
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?self $parent): self
+    {
+        $this->parent = $parent;
 
         return $this;
     }
