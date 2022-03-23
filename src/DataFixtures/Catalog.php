@@ -49,15 +49,6 @@ class Catalog extends Fixture
         $tematica->setActive(true);
         $manager->persist($tematica);
 
-        $duracion = new Category();
-        $duracion->setName('Duración');
-        $duracion->setSlug('duracion');
-        $duracion->setIcon(self::ICON);
-        $duracion->setImage($defaultImage);
-        $duracion->setColor(self::COLOR);
-        $duracion->setActive(true);
-        $manager->persist($duracion);
-
         $sumandoVoluntades = new Category();
         $sumandoVoluntades->setParent($tematica);
         $sumandoVoluntades->setName('Sumando voluntades');
@@ -67,6 +58,155 @@ class Catalog extends Fixture
         $sumandoVoluntades->setColor(self::COLOR);
         $sumandoVoluntades->setActive(true);
         $manager->persist($sumandoVoluntades);
+
+        $cariciasDeLaNaturaleza = new Category();
+        $cariciasDeLaNaturaleza->setParent($tematica);
+        $cariciasDeLaNaturaleza->setName('Caricias de la naturaleza');
+        $cariciasDeLaNaturaleza->setSlug('caricias-de-la-naturaleza');
+        $cariciasDeLaNaturaleza->setIcon(self::ICON);
+        $cariciasDeLaNaturaleza->setImage($defaultImage);
+        $cariciasDeLaNaturaleza->setColor(self::COLOR);
+        $cariciasDeLaNaturaleza->setActive(true);
+        $manager->persist($cariciasDeLaNaturaleza);
+
+        $circuitos360 = new Category();
+        $circuitos360->setParent($tematica);
+        $circuitos360->setName('Circuitos 360');
+        $circuitos360->setSlug('circuitos-360');
+        $circuitos360->setIcon(self::ICON);
+        $circuitos360->setImage($defaultImage);
+        $circuitos360->setColor(self::COLOR);
+        $circuitos360->setActive(true);
+        $manager->persist($circuitos360);
+
+        $descubriendoRaices = new Category();
+        $descubriendoRaices->setParent($tematica);
+        $descubriendoRaices->setName('Descubriendo raíces');
+        $descubriendoRaices->setSlug('descubriendo-raices');
+        $descubriendoRaices->setIcon(self::ICON);
+        $descubriendoRaices->setImage($defaultImage);
+        $descubriendoRaices->setColor(self::COLOR);
+        $descubriendoRaices->setActive(true);
+        $manager->persist($descubriendoRaices);
+
+        $excursiones = new Category();
+        $excursiones->setParent($tematica);
+        $excursiones->setName('Excursiones');
+        $excursiones->setSlug('excursiones');
+        $excursiones->setIcon(self::ICON);
+        $excursiones->setImage($defaultImage);
+        $excursiones->setColor(self::COLOR);
+        $excursiones->setActive(true);
+        $manager->persist($excursiones);
+
+        $familias = new Category();
+        $familias->setParent($tematica);
+        $familias->setName('Familias');
+        $familias->setSlug('familias');
+        $familias->setIcon(self::ICON);
+        $familias->setImage($defaultImage);
+        $familias->setColor(self::COLOR);
+        $familias->setActive(true);
+        $manager->persist($familias);
+
+        $parejas = new Category();
+        $parejas->setParent($tematica);
+        $parejas->setName('Parejas');
+        $parejas->setSlug('parejas');
+        $parejas->setIcon(self::ICON);
+        $parejas->setImage($defaultImage);
+        $parejas->setColor(self::COLOR);
+        $parejas->setActive(true);
+        $manager->persist($parejas);
+
+        $playa = new Category();
+        $playa->setParent($tematica);
+        $playa->setName('Playa');
+        $playa->setSlug('playa');
+        $playa->setIcon(self::ICON);
+        $playa->setImage($defaultImage);
+        $playa->setColor(self::COLOR);
+        $playa->setActive(true);
+        $manager->persist($playa);
+
+        $temporada = new Category();
+        $temporada->setParent($tematica);
+        $temporada->setName('Temporada');
+        $temporada->setSlug('temporada');
+        $temporada->setIcon(self::ICON);
+        $temporada->setImage($defaultImage);
+        $temporada->setColor(self::COLOR);
+        $temporada->setActive(true);
+        $manager->persist($temporada);
+
+        $duracion = new Category();
+        $duracion->setName('Duración');
+        $duracion->setSlug('duracion');
+        $duracion->setIcon(self::ICON);
+        $duracion->setImage($defaultImage);
+        $duracion->setColor(self::COLOR);
+        $duracion->setActive(true);
+        $manager->persist($duracion);
+
+        $unDia = new Category();
+        $unDia->setParent($duracion);
+        $unDia->setName('1 día');
+        $unDia->setSlug('1-dia');
+        $unDia->setIcon(self::ICON);
+        $unDia->setImage($defaultImage);
+        $unDia->setColor(self::COLOR);
+        $unDia->setActive(true);
+        $manager->persist($unDia);
+
+        $dosDias = new Category();
+        $dosDias->setParent($duracion);
+        $dosDias->setName('2 días');
+        $dosDias->setSlug('2-dias');
+        $dosDias->setIcon(self::ICON);
+        $dosDias->setImage($defaultImage);
+        $dosDias->setColor(self::COLOR);
+        $dosDias->setActive(true);
+        $manager->persist($dosDias);
+
+        $tresDias = new Category();
+        $tresDias->setParent($duracion);
+        $tresDias->setName('3 días');
+        $tresDias->setSlug('3-dias');
+        $tresDias->setIcon(self::ICON);
+        $tresDias->setImage($defaultImage);
+        $tresDias->setColor(self::COLOR);
+        $tresDias->setActive(true);
+        $manager->persist($tresDias);
+
+        $cuatroDias = new Category();
+        $cuatroDias->setParent($duracion);
+        $cuatroDias->setName('4 días');
+        $cuatroDias->setSlug('4-dias');
+        $cuatroDias->setIcon(self::ICON);
+        $cuatroDias->setImage($defaultImage);
+        $cuatroDias->setColor(self::COLOR);
+        $cuatroDias->setActive(true);
+        $manager->persist($cuatroDias);
+
+        $cincoDias = new Category();
+        $cincoDias->setParent($duracion);
+        $cincoDias->setName('5 días');
+        $cincoDias->setSlug('5-dias');
+        $cincoDias->setIcon(self::ICON);
+        $cincoDias->setImage($defaultImage);
+        $cincoDias->setColor(self::COLOR);
+        $cincoDias->setActive(true);
+        $manager->persist($cincoDias);
+
+        $nueveDias = new Category();
+        $nueveDias->setParent($duracion);
+        $nueveDias->setName('9 días');
+        $nueveDias->setSlug('9-dias');
+        $nueveDias->setIcon(self::ICON);
+        $nueveDias->setImage($defaultImage);
+        $nueveDias->setColor(self::COLOR);
+        $nueveDias->setActive(true);
+        $manager->persist($nueveDias);
 
         $cuatroDias = new Category();
         $cuatroDias->setParent($duracion);
