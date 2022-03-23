@@ -62,7 +62,7 @@ class Category implements \Stringable, Sluggable
     private $toursByDuration;
 
     /**
-     * @ORM\OneToOne(targetEntity=Category::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Category::class)
      */
     private $parent;
 
