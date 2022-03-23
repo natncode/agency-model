@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace DC\Model\Entity;
 
 use DC\Model\Repository\RegionRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,6 +31,16 @@ class Region implements \Stringable
      * @ORM\JoinColumn(nullable=false)
      */
     private $country;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Tour::class, mappedBy="regions")
+     */
+    private $tours;
+
+    public function __construct()
+    {
+        $this->tours = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -62,5 +74,32 @@ class Region implements \Stringable
     public function __toString(): string
     {
         return (string) $this->getName();
+    }
+
+    /**
+     * @return Collection|Tour[]
+     */
+    public function getTours(): Collection
+    {
+        return $this->tours;
+    }
+
+    public function addTour(Tour $tour): self
+    {
+        if (!$this->tours->contains($tour)) {
+            $this->tours[] = $tour;
+            $tour->addRegion($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTour(Tour $tour): self
+    {
+        if ($this->tours->removeElement($tour)) {
+            $tour->removeRegion($this);
+        }
+
+        return $this;
     }
 }

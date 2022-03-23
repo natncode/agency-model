@@ -137,12 +137,6 @@ class Tour implements \Stringable, Sluggable
     private $updatedAt;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Region::class)
-     * @ORM\JoinTable(name="extended_by")
-     */
-    private $regions;
-
-    /**
      * @ORM\ManyToMany(targetEntity=Category::class)
      */
     private $categories;
@@ -191,6 +185,12 @@ class Tour implements \Stringable, Sluggable
      */
     private $duration;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Region::class, inversedBy="tours")
+     * @ORM\JoinTable(name="extended_by")
+     */
+    private $regions;
+
     public function __toString(): string
     {
         return (string) ($this->getSecundaryName() ?? $this->getName());
@@ -198,7 +198,6 @@ class Tour implements \Stringable, Sluggable
 
     public function __construct()
     {
-        $this->regions = new ArrayCollection();
         $this->categories = new ArrayCollection();
         $this->includedDetails = new ArrayCollection();
         $this->nonIncludedDetails = new ArrayCollection();
@@ -206,6 +205,7 @@ class Tour implements \Stringable, Sluggable
         $this->activities = new ArrayCollection();
         $this->dates = new ArrayCollection();
         $this->highlights = new ArrayCollection();
+        $this->regions = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -490,30 +490,6 @@ class Tour implements \Stringable, Sluggable
     }
 
     /**
-     * @return Collection|Region[]
-     */
-    public function getRegions(): Collection
-    {
-        return $this->regions;
-    }
-
-    public function addRegion(Region $region): self
-    {
-        if (!$this->regions->contains($region)) {
-            $this->regions[] = $region;
-        }
-
-        return $this;
-    }
-
-    public function removeRegion(Region $region): self
-    {
-        $this->regions->removeElement($region);
-
-        return $this;
-    }
-
-    /**
      * @return Collection|Category[]
      */
     public function getCategories(): Collection
@@ -725,6 +701,30 @@ class Tour implements \Stringable, Sluggable
     public function setDuration(?Category $duration): self
     {
         $this->duration = $duration;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Region[]
+     */
+    public function getRegions(): Collection
+    {
+        return $this->regions;
+    }
+
+    public function addRegion(Region $region): self
+    {
+        if (!$this->regions->contains($region)) {
+            $this->regions[] = $region;
+        }
+
+        return $this;
+    }
+
+    public function removeRegion(Region $region): self
+    {
+        $this->regions->removeElement($region);
 
         return $this;
     }

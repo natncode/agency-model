@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220323182956 extends AbstractMigration
+final class Version20220323204300 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -32,9 +32,6 @@ final class Version20220323182956 extends AbstractMigration
         )');
         $this->addSql('CREATE INDEX IDX_6AD1F9692395FCED ON tour (thematic_id)');
         $this->addSql('CREATE INDEX IDX_6AD1F96937B987D8 ON tour (duration_id)');
-        $this->addSql('CREATE TABLE extended_by (tour_id INTEGER NOT NULL, region_id INTEGER NOT NULL, PRIMARY KEY(tour_id, region_id))');
-        $this->addSql('CREATE INDEX IDX_2E56395115ED8D43 ON extended_by (tour_id)');
-        $this->addSql('CREATE INDEX IDX_2E56395198260155 ON extended_by (region_id)');
         $this->addSql('CREATE TABLE tour_category (tour_id INTEGER NOT NULL, category_id INTEGER NOT NULL, PRIMARY KEY(tour_id, category_id))');
         $this->addSql('CREATE INDEX IDX_9CB340F215ED8D43 ON tour_category (tour_id)');
         $this->addSql('CREATE INDEX IDX_9CB340F212469DE2 ON tour_category (category_id)');
@@ -44,6 +41,9 @@ final class Version20220323182956 extends AbstractMigration
         $this->addSql('CREATE TABLE non_included_details (tour_id INTEGER NOT NULL, tour_detail_id INTEGER NOT NULL, PRIMARY KEY(tour_id, tour_detail_id))');
         $this->addSql('CREATE INDEX IDX_4522174415ED8D43 ON non_included_details (tour_id)');
         $this->addSql('CREATE INDEX IDX_45221744679A9DF4 ON non_included_details (tour_detail_id)');
+        $this->addSql('CREATE TABLE extended_by (tour_id INTEGER NOT NULL, region_id INTEGER NOT NULL, PRIMARY KEY(tour_id, region_id))');
+        $this->addSql('CREATE INDEX IDX_2E56395115ED8D43 ON extended_by (tour_id)');
+        $this->addSql('CREATE INDEX IDX_2E56395198260155 ON extended_by (region_id)');
         $this->addSql('CREATE TABLE tour_activity (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, tour_id INTEGER NOT NULL, topic_id INTEGER DEFAULT NULL, description CLOB NOT NULL)');
         $this->addSql('CREATE INDEX IDX_368B506915ED8D43 ON tour_activity (tour_id)');
         $this->addSql('CREATE INDEX IDX_368B50691F55203D ON tour_activity (topic_id)');
@@ -67,10 +67,10 @@ final class Version20220323182956 extends AbstractMigration
         $this->addSql('DROP TABLE country');
         $this->addSql('DROP TABLE region');
         $this->addSql('DROP TABLE tour');
-        $this->addSql('DROP TABLE extended_by');
         $this->addSql('DROP TABLE tour_category');
         $this->addSql('DROP TABLE included_details');
         $this->addSql('DROP TABLE non_included_details');
+        $this->addSql('DROP TABLE extended_by');
         $this->addSql('DROP TABLE tour_activity');
         $this->addSql('DROP TABLE tour_date');
         $this->addSql('DROP TABLE tour_detail');
