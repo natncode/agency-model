@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220324023714 extends AbstractMigration
+final class Version20220324032345 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -32,9 +32,6 @@ final class Version20220324023714 extends AbstractMigration
         )');
         $this->addSql('CREATE INDEX IDX_6AD1F9692395FCED ON tour (thematic_id)');
         $this->addSql('CREATE INDEX IDX_6AD1F96937B987D8 ON tour (duration_id)');
-        $this->addSql('CREATE TABLE tour_category (tour_id INTEGER NOT NULL, category_id INTEGER NOT NULL, PRIMARY KEY(tour_id, category_id))');
-        $this->addSql('CREATE INDEX IDX_9CB340F215ED8D43 ON tour_category (tour_id)');
-        $this->addSql('CREATE INDEX IDX_9CB340F212469DE2 ON tour_category (category_id)');
         $this->addSql('CREATE TABLE included_details (tour_id INTEGER NOT NULL, tour_detail_id INTEGER NOT NULL, PRIMARY KEY(tour_id, tour_detail_id))');
         $this->addSql('CREATE INDEX IDX_CAD0659115ED8D43 ON included_details (tour_id)');
         $this->addSql('CREATE INDEX IDX_CAD06591679A9DF4 ON included_details (tour_detail_id)');
@@ -67,7 +64,6 @@ final class Version20220324023714 extends AbstractMigration
         $this->addSql('DROP TABLE country');
         $this->addSql('DROP TABLE region');
         $this->addSql('DROP TABLE tour');
-        $this->addSql('DROP TABLE tour_category');
         $this->addSql('DROP TABLE included_details');
         $this->addSql('DROP TABLE non_included_details');
         $this->addSql('DROP TABLE extended_by');
