@@ -227,50 +227,145 @@ class Catalog extends Fixture
 
         $manager->flush();
 
-        $regionsNames = [
-            'Aguascalientes',
-            'Baja California',
-            'Baja California Sur',
-            'Campeche',
-            'Chiapas',
-            'Chihuahua',
-            'Ciudad de México',
-            'Coahuila',
-            'Colima',
-            'Durango',
-            'Estado de México',
-            'Guanajuato',
-            'Guerrero',
-            'Hidalgo',
-            'Jalisco',
-            'Michoacán',
-            'Morelos',
-            'Nayarit',
-            'Nuevo León',
-            'Oaxaca',
-            'Puebla',
-            'Querétaro',
-            'Quintana Roo',
-            'San Luis Potosí',
-            'Sinaloa',
-            'Sonora',
-            'Tabasco',
-            'Tamaulipas',
-            'Tlaxcala',
-            'Veracruz',
-            'Yucatán',
+        $regions = [
+            [
+                'name' => 'Aguascalientes',
+                'slug' => 'aguascalientes',
+            ],
+            [
+                'name' => 'Baja California',
+                'slug' => 'baja-california',
+            ],
+            [
+                'name' => 'Baja California Sur',
+                'slug' => 'baja-california-sur',
+            ],
+            [
+                'name' => 'Campeche',
+                'slug' => 'campeche',
+            ],
+            [
+                'name' => 'Chiapas',
+                'slug' => 'chiapas',
+            ],
+            [
+                'name' => 'Chihuahua',
+                'slug' => 'chihuahua',
+            ],
+            [
+                'name' => 'Ciudad de México',
+                'slug' => 'ciudad-de-mexico',
+            ],
+            [
+                'name' => 'Coahuila',
+                'slug' => 'coahuila',
+            ],
+            [
+                'name' => 'Colima',
+                'slug' => 'colima',
+            ],
+            [
+                'name' => 'Durango',
+                'slug' => 'durango',
+            ],
+            [
+                'name' => 'Estado de México',
+                'slug' => 'estado-de-mexico',
+            ],
+            [
+                'name' => 'Guanajuato',
+                'slug' => 'guanajuato',
+            ],
+            [
+                'name' => 'Guerrero',
+                'slug' => 'guerrero',
+            ],
+            [
+                'name' => 'Hidalgo',
+                'slug' => 'hidalgo',
+            ],
+            [
+                'name' => 'Jalisco',
+                'slug' => 'jalisco',
+            ],
+            [
+                'name' => 'Michoacán',
+                'slug' => 'michoacan',
+            ],
+            [
+                'name' => 'Morelos',
+                'slug' => 'morelos',
+            ],
+            [
+                'name' => 'Nayarit',
+                'slug' => 'nayarit',
+            ],
+            [
+                'name' => 'Nuevo León',
+                'slug' => 'nuevo-leon',
+            ],
+            [
+                'name' => 'Oaxaca',
+                'slug' => 'oaxaca',
+            ],
+            [
+                'name' => 'Puebla',
+                'slug' => 'puebla',
+            ],
+            [
+                'name' => 'Querétaro',
+                'slug' => 'queretaro',
+            ],
+            [
+                'name' => 'Quintana Roo',
+                'slug' => 'quintana-roo',
+            ],
+            [
+                'name' => 'San Luis Potosí',
+                'slug' => 'san-luis-potosi',
+            ],
+            [
+                'name' => 'Sinaloa',
+                'slug' => 'sinaloa',
+            ],
+            [
+                'name' => 'Sonora',
+                'slug' => 'sonora',
+            ],
+            [
+                'name' => 'Tabasco',
+                'slug' => 'tabasco',
+            ],
+            [
+                'name' => 'Tamaulipas',
+                'slug' => 'tamaulipas',
+            ],
+            [
+                'name' => 'Tlaxcala',
+                'slug' => 'tlaxcala',
+            ],
+            [
+                'name' => 'Veracruz',
+                'slug' => 'veracruz',
+            ],
+            [
+                'name' => 'Yucatán',
+                'slug' => 'yucatan',
+            ],
         ];
 
-        foreach ($regionsNames as $regionName) {
-            $region = new Region();
-            $region->setName($regionName);
-            $region->setCountry($country);
+        foreach ($regions as $region) {
+            $newRegion = new Region();
+            $newRegion->setName($region['name']);
+            $newRegion->setSlug($region['slug']);
+            $newRegion->setCountry($country);
 
-            $manager->persist($region);
+            $manager->persist($newRegion);
         }
 
         $zacatecas = new Region();
         $zacatecas->setName('Zacatecas');
+        $zacatecas->setSlug('zacatecas');
         $zacatecas->setCountry($country);
         $manager->persist($zacatecas);
 

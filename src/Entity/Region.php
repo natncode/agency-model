@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=RegionRepository::class)
  */
-class Region implements \Stringable
+class Region implements \Stringable, Sluggable
 {
     /**
      * @ORM\Id
@@ -36,6 +36,11 @@ class Region implements \Stringable
      * @ORM\ManyToMany(targetEntity=Tour::class, mappedBy="regions")
      */
     private $tours;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     public function __construct()
     {
@@ -99,6 +104,18 @@ class Region implements \Stringable
         if ($this->tours->removeElement($tour)) {
             $tour->removeRegion($this);
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
