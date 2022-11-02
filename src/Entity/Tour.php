@@ -34,7 +34,7 @@ class Tour implements \Stringable, Sluggable
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $secundaryName;
+    private $secondaryName;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -188,7 +188,7 @@ class Tour implements \Stringable, Sluggable
 
     public function __toString(): string
     {
-        return (string) ($this->getSecundaryName() ?? $this->getName());
+        return (string) ($this->getSecondaryName() ?? $this->getName());
     }
 
     public function __construct()
@@ -231,14 +231,14 @@ class Tour implements \Stringable, Sluggable
         return $this;
     }
 
-    public function getSecundaryName(): ?string
+    public function getSecondaryName(): ?string
     {
-        return $this->secundaryName;
+        return $this->secondaryName;
     }
 
-    public function setSecundaryName(string $secundaryName): self
+    public function setSecondaryName(string $secondaryName): self
     {
-        $this->secundaryName = $secundaryName;
+        $this->secondaryName = $secondaryName;
 
         return $this;
     }

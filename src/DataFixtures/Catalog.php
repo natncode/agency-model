@@ -425,7 +425,7 @@ class Catalog extends Fixture
         $tour->setUuid(Uuid::v4());
         $tour->setName('La eterna primavera en Cuernavaca');
         $tour->setSlug('la-eterna-primavera-en-cuernavaca');
-        $tour->setSecundaryName('amonos-recio');
+        $tour->setSecondaryName('amonos-recio');
         $tour->setDescription('Es el mejor viaje que podrás adquirir con nosotros, piénsalo: tú, yo, un arból de papaya ;)');
         $tour->setMap('');
         $tour->setMainImage('https://via.placeholder.com/150C/O%20https://placeholder.com/');
