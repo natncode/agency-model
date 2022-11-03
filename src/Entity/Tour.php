@@ -119,7 +119,7 @@ class Tour implements \Stringable, Sluggable
     /**
      * @ORM\Column(type="boolean")
      */
-    private $allowCustomSchedule;
+    private $allowCustomSchedule = false;
 
     /**
      * @ORM\Column(type="boolean")
