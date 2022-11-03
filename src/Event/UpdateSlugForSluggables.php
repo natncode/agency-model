@@ -9,6 +9,7 @@ use DC\Model\Entity\Sluggable;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityPersistedEvent;
 use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use DC\Model\Entity\Tour;
 
 class UpdateSlugForSluggables implements EventSubscriberInterface
 {
@@ -24,6 +25,14 @@ class UpdateSlugForSluggables implements EventSubscriberInterface
     {
         $entity = $event->getEntityInstance();
         if (!($entity instanceof Sluggable)) {
+            return;
+        }
+
+        if ($entity instanceof Tour) {
+            $entity->setSlug(Slugger::slugify(
+                sprintf('%s %s', $entity->getThematic()->getName(), $entity->getName())
+            ));
+            
             return;
         }
 
