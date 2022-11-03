@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass=TourRepository::class)
  */
-class Tour implements \Stringable, Sluggable
+class Tour implements \Stringable, Sluggable, Timestampable
 {
     /**
      * @ORM\Id
