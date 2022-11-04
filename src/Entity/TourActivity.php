@@ -36,6 +36,11 @@ class TourActivity
      */
     private $topic;
 
+    public function __toString(): string
+    {
+        return (string) $this->getDescription();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

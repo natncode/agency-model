@@ -57,6 +57,18 @@ class TourDate
         $this->fares = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        if (!$this->getDepartureDate() || !$this->getReturnDate()) {
+            return '';
+        }
+
+        return sprintf('%s - %s',
+            $this->getDepartureDate()->format('d M Y'),
+            $this->getReturnDate()->format('d M Y')
+        );
+    }
+
     public function getId(): ?int
     {
         return $this->id;

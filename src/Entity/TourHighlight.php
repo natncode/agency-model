@@ -36,6 +36,11 @@ class TourHighlight
      */
     private $topic;
 
+    public function __toString(): string
+    {
+        return (string) $this->getTopic()->getName();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
